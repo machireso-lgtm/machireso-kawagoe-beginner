@@ -1,1 +1,0 @@
-# machireso-kawagoe-beginner
