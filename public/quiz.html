@@ -26,7 +26,7 @@ let currentId = 1;
 let completed = {};
 
 async function loadQuestions(){
-  const res = await fetch('/data/questions.json');
+ const r = await fetch("/data/questions.json");
   questions = await res.json();
   // read q param
   const params = new URLSearchParams(location.search);
