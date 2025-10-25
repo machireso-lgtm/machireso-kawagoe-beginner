@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>まちリゾPRESENTS 川越編 初級コース【家族と楽しむ小江戸の謎】</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+      body { font-family: sans-serif; padding:20px; max-width:800px; margin:auto; line-height:1.6;}
+      input, button { font-size:1rem; padding:8px; margin-top:8px;}
+    </style>
+  </head>
+  <body>
+    <h1>まちリゾPRESENTS 川越編 初級コース【家族と楽しむ小江戸の謎】</h1>
+    <p>ごりよう、ありがとうございます。<br>
+    なぞは、ぜんぶで 20もんあります。いどうしながら、もんだいにこたえるようになっています。</p>
+
+    <h2>【あそびかた】</h2>
+    <p>ナゾをといたら、こたえを にゅうりょくしてください。せいかいすると つぎのなぞにすすめます。<br>
+    パスワードを にゅうりょくしたら、もんだいに すすみます。</p>
+
+    <p><strong>パスワードを入力してください。</strong></p>
+    <input type="password" id="pwd" placeholder="パスワードを入力">
+    <button id="pwdBtn">送信</button>
+
+    <p style="margin-top:18px; color:#666; font-size:0.9rem;">（仮のパスワード：<code>kawagoe2025</code>）</p>
+
+    <script>
+      document.getElementById('pwdBtn').addEventListener('click', async function(){
+        const input = document.getElementById('pwd').value;
+        const res = await fetch('/api/check', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ type:'password', value: input })
+        });
+        const data = await res.json();
+        if(data.ok){
+          // go to quiz page, start at q=1
+          location.href = '/quiz.html?q=1';
+        } else {
+          alert('パスワードが違います。もう一度入力してください。');
+        }
+      });
+    </script>
+  </body>
+</html>
